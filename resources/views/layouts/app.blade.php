@@ -57,8 +57,7 @@
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <span class="text-3xl font-bold text-yellow-500" style="font-family: var(--font-display); letter-spacing: -0.02em;">WERKSTATT</span>
-                            <span class="block text-xs text-white uppercase tracking-widest" style="font-family: var(--font-mono); font-weight: 600; margin-top: -4px;">DEUTSCHLAND</span>
+                            <span class="text-3xl font-bold text-white" style="font-family: var(--font-display); letter-spacing: -0.02em;">werkstatt<span class="text-yellow-500">.de</span></span>
                         </div>
                     </a>
                 </div>
@@ -137,7 +136,7 @@
                             <path stroke-linecap="square" stroke-linejoin="miter" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                             <path stroke-linecap="square" stroke-linejoin="miter" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span class="ml-3 text-2xl font-bold text-yellow-500" style="font-family: var(--font-display);">WERKSTATT.DE</span>
+                        <span class="ml-3 text-2xl font-bold text-white" style="font-family: var(--font-display);">werkstatt<span class="text-yellow-500">.de</span></span>
                     </div>
                     <p class="text-base leading-relaxed mb-8" style="color: #9ca3af;">
                         Deutschlands führende Plattform für Autowerkstätten, TÜV-Stationen und Reifenhändler. Präzision, Geschwindigkeit, Zuverlässigkeit.
