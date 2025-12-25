@@ -19,11 +19,6 @@ class TireDealerDetail extends Model
         'location_id',
         'tire_brands',
         'services',
-        'tire_storage_available',
-        'wheel_alignment',
-        'balancing_available',
-        'run_flat_specialist',
-        'mobile_service',
     ];
 
     /**
@@ -36,11 +31,6 @@ class TireDealerDetail extends Model
         return [
             'tire_brands' => 'array',
             'services' => 'array',
-            'tire_storage_available' => 'boolean',
-            'wheel_alignment' => 'boolean',
-            'balancing_available' => 'boolean',
-            'run_flat_specialist' => 'boolean',
-            'mobile_service' => 'boolean',
         ];
     }
 

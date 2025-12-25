@@ -20,12 +20,6 @@ class WorkshopDetail extends Model
         'specializations',
         'brands_serviced',
         'services',
-        'years_in_business',
-        'number_of_employees',
-        'certifications',
-        'warranty_offered',
-        'loaner_vehicles',
-        'pickup_delivery',
     ];
 
     /**
@@ -39,11 +33,6 @@ class WorkshopDetail extends Model
             'specializations' => 'array',
             'brands_serviced' => 'array',
             'services' => 'array',
-            'years_in_business' => 'integer',
-            'number_of_employees' => 'integer',
-            'warranty_offered' => 'boolean',
-            'loaner_vehicles' => 'boolean',
-            'pickup_delivery' => 'boolean',
         ];
     }
 

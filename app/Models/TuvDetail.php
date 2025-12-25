@@ -19,10 +19,6 @@ class TuvDetail extends Model
         'location_id',
         'inspection_types',
         'appointment_required',
-        'average_inspection_duration',
-        'online_booking_available',
-        'evening_hours',
-        'weekend_hours',
     ];
 
     /**
@@ -35,10 +31,6 @@ class TuvDetail extends Model
         return [
             'inspection_types' => 'array',
             'appointment_required' => 'boolean',
-            'online_booking_available' => 'boolean',
-            'evening_hours' => 'boolean',
-            'weekend_hours' => 'boolean',
-            'average_inspection_duration' => 'integer',
         ];
     }
 

@@ -30,14 +30,15 @@ class OverpassApiService
      */
     public function queryWorkshops(): array
     {
+        // Using bbox for Germany instead of area query for better reliability
+        // Germany bbox: [47.3, 5.9, 55.1, 15.0] (south, west, north, east)
         $query = <<<'OVERPASS'
 [out:json][timeout:300];
-area["ISO3166-1"="DE"][admin_level=2];
 (
-  node["shop"="car_repair"](area);
-  way["shop"="car_repair"](area);
-  node["craft"="car_repair"](area);
-  way["craft"="car_repair"](area);
+  node["shop"="car_repair"](47.3,5.9,55.1,15.0);
+  way["shop"="car_repair"](47.3,5.9,55.1,15.0);
+  node["craft"="car_repair"](47.3,5.9,55.1,15.0);
+  way["craft"="car_repair"](47.3,5.9,55.1,15.0);
 );
 out body;
 >;
@@ -56,14 +57,14 @@ OVERPASS;
      */
     public function queryTuvStations(): array
     {
+        // Using bbox for Germany for better reliability
         $query = <<<'OVERPASS'
 [out:json][timeout:300];
-area["ISO3166-1"="DE"][admin_level=2];
 (
-  node["amenity"="vehicle_inspection"](area);
-  way["amenity"="vehicle_inspection"](area);
-  node["office"="vehicle_inspection"](area);
-  way["office"="vehicle_inspection"](area);
+  node["amenity"="vehicle_inspection"](47.3,5.9,55.1,15.0);
+  way["amenity"="vehicle_inspection"](47.3,5.9,55.1,15.0);
+  node["office"="vehicle_inspection"](47.3,5.9,55.1,15.0);
+  way["office"="vehicle_inspection"](47.3,5.9,55.1,15.0);
 );
 out body;
 >;
@@ -82,14 +83,14 @@ OVERPASS;
      */
     public function queryTireDealers(): array
     {
+        // Using bbox for Germany for better reliability
         $query = <<<'OVERPASS'
 [out:json][timeout:300];
-area["ISO3166-1"="DE"][admin_level=2];
 (
-  node["shop"="tyres"](area);
-  way["shop"="tyres"](area);
-  node["shop"="car_parts"]["service:tyres"="yes"](area);
-  way["shop"="car_parts"]["service:tyres"="yes"](area);
+  node["shop"="tyres"](47.3,5.9,55.1,15.0);
+  way["shop"="tyres"](47.3,5.9,55.1,15.0);
+  node["shop"="car_parts"]["service:tyres"="yes"](47.3,5.9,55.1,15.0);
+  way["shop"="car_parts"]["service:tyres"="yes"](47.3,5.9,55.1,15.0);
 );
 out body;
 >;
