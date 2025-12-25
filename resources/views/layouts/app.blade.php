@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- Resource Hints for Performance --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
     {{-- SEO Meta Tags --}}
     <title>{{ $metaTitle ?? 'Werkstatt.de - Finden Sie die beste Autowerkstatt in Ihrer Nähe' }}</title>
     <meta name="description" content="{{ $metaDescription ?? 'Entdecken Sie Autowerkstätten, TÜV-Stationen und Reifenhändler in ganz Deutschland. Vergleichen Sie Preise, Bewertungen und finden Sie den perfekten Service für Ihr Fahrzeug.' }}">
@@ -213,8 +218,8 @@
         </div>
     </footer>
 
-    {{-- Leaflet JS --}}
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    {{-- Leaflet JS - Deferred for better performance --}}
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 

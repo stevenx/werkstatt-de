@@ -3,9 +3,45 @@
 @php
     $metaTitle = $location->name . ' - ' . $location->city . ' | werkstatt.de';
     $metaDescription = 'Informationen zu ' . $location->name . ' in ' . $location->postal_code . ' ' . $location->city . '. Adresse, Kontaktdaten und Öffnungszeiten.';
+
+    // Prepare JSON-LD data
+    $schemaData = [
+        'name' => $location->name,
+        'description' => $metaDescription,
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => ($location->street ? $location->street . ' ' . $location->house_number : ''),
+            'addressLocality' => $location->city,
+            'postalCode' => $location->postal_code,
+            'addressRegion' => $location->state,
+            'addressCountry' => 'DE'
+        ],
+        'geo' => [
+            '@type' => 'GeoCoordinates',
+            'latitude' => $location->latitude,
+            'longitude' => $location->longitude
+        ],
+    ];
+
+    if ($location->phone) $schemaData['telephone'] = $location->phone;
+    if ($location->email) $schemaData['email'] = $location->email;
+    if ($location->website) $schemaData['url'] = $location->website;
+    if ($location->opening_hours && isset($location->opening_hours['raw'])) {
+        $schemaData['openingHours'] = $location->opening_hours['raw'];
+    }
 @endphp
 
 @section('content')
+{{-- JSON-LD Structured Data --}}
+<x-schema-org type="LocalBusiness" :data="$schemaData" />
+<x-schema-org type="BreadcrumbList" :data="[
+    'itemListElement' => [
+        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => route('home')],
+        ['@type' => 'ListItem', 'position' => 2, 'name' => ($location->type === 'workshop' ? 'Werkstätten' : ($location->type === 'tuv' ? 'TÜV-Stationen' : 'Reifenhändler')), 'item' => route('locations.index', ['type' => $location->type])],
+        ['@type' => 'ListItem', 'position' => 3, 'name' => $location->city, 'item' => route('locations.index', ['city' => $location->city])],
+        ['@type' => 'ListItem', 'position' => 4, 'name' => $location->name]
+    ]
+]" />
 {{-- BOLD INDUSTRIAL HERO --}}
 <section class="relative bg-charcoal-900 pt-32 pb-20 overflow-hidden">
     {{-- Angular Yellow Stripe --}}

@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- JSON-LD Structured Data --}}
+<x-schema-org type="Organization" />
+<x-schema-org type="WebSite" />
+
 {{-- BOLD INDUSTRIAL HERO - Asymmetric Layout --}}
 <section class="hero-industrial relative overflow-hidden">
     <div class="hero-diagonal-bg"></div>
