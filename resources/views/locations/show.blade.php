@@ -153,33 +153,33 @@
 
                 {{-- MAP SECTION - Full Width --}}
                 @if($location->latitude && $location->longitude)
-                <div class="bg-white border-4 border-charcoal-900 overflow-hidden" style="clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);">
+                <div class="bg-charcoal-900 border-4 border-yellow-500 overflow-hidden" style="clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);">
                     <div class="p-8">
                         <div class="flex items-center mb-6">
                             <div class="w-1 h-8 bg-yellow-500 mr-4"></div>
-                            <h2 class="text-3xl font-bold text-charcoal-900" style="font-family: var(--font-display);">STANDORT</h2>
+                            <h2 class="text-3xl font-bold text-white" style="font-family: var(--font-display);">STANDORT</h2>
                         </div>
-                        <div id="map" class="border-4 border-charcoal-900" style="height: 450px; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);"></div>
+                        <div id="map" class="border-4 border-yellow-500" style="height: 450px; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px); filter: grayscale(100%) contrast(120%) brightness(90%);"></div>
                     </div>
                 </div>
                 @endif
 
                 {{-- DETAILS CARD --}}
-                <div class="bg-white border-4 border-charcoal-900 p-8" style="clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);">
+                <div class="bg-charcoal-900 border-4 border-yellow-500 p-8" style="clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);">
                     <div class="flex items-center mb-6">
                         <div class="w-1 h-8 bg-yellow-500 mr-4"></div>
-                        <h2 class="text-3xl font-bold text-charcoal-900" style="font-family: var(--font-display);">DETAILS</h2>
+                        <h2 class="text-3xl font-bold text-white" style="font-family: var(--font-display);">DETAILS</h2>
                     </div>
 
                     {{-- Opening Hours --}}
                     @if($location->opening_hours)
                     <div class="mb-8">
-                        <h3 class="text-lg font-bold text-charcoal-900 mb-4 uppercase tracking-wider" style="font-family: var(--font-display);">Öffnungszeiten</h3>
+                        <h3 class="text-lg font-bold text-yellow-500 mb-4 uppercase tracking-wider" style="font-family: var(--font-display);">Öffnungszeiten</h3>
                         <div class="space-y-3">
                             @foreach($location->opening_hours as $day => $hours)
-                            <div class="flex justify-between items-center p-3 bg-gray-50 border-l-4 border-yellow-500">
-                                <span class="font-bold text-charcoal-900" style="font-family: var(--font-display);">{{ ucfirst($day) }}</span>
-                                <span class="text-gray-700 font-semibold" style="font-family: var(--font-mono);">{{ $hours }}</span>
+                            <div class="flex justify-between items-center p-3 bg-charcoal-800 border-l-4 border-yellow-500">
+                                <span class="font-bold text-white" style="font-family: var(--font-display);">{{ ucfirst($day) }}</span>
+                                <span class="text-gray-300 font-semibold" style="font-family: var(--font-mono);">{{ $hours }}</span>
                             </div>
                             @endforeach
                         </div>
@@ -247,25 +247,25 @@
                     </div>
 
                     {{-- STATS CARD --}}
-                    <div class="bg-white border-4 border-charcoal-900 p-6" style="clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);">
-                        <h3 class="text-lg font-bold text-charcoal-900 mb-4 uppercase tracking-wider" style="font-family: var(--font-display);">Info</h3>
+                    <div class="bg-charcoal-900 border-4 border-yellow-500 p-6" style="clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);">
+                        <h3 class="text-lg font-bold text-yellow-500 mb-4 uppercase tracking-wider" style="font-family: var(--font-display);">Info</h3>
 
                         <div class="space-y-4">
-                            <div class="border-b-2 border-gray-200 pb-3">
-                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Kategorie</p>
-                                <p class="text-lg font-bold text-charcoal-900" style="font-family: var(--font-mono);">
+                            <div class="border-b-2 border-charcoal-700 pb-3">
+                                <p class="text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Kategorie</p>
+                                <p class="text-lg font-bold text-white" style="font-family: var(--font-mono);">
                                     {{ $location->type === 'workshop' ? 'WERKSTATT' : ($location->type === 'tuv' ? 'TÜV-STATION' : 'REIFENHÄNDLER') }}
                                 </p>
                             </div>
                             @if($location->state)
-                            <div class="border-b-2 border-gray-200 pb-3">
-                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Bundesland</p>
-                                <p class="text-lg font-bold text-charcoal-900" style="font-family: var(--font-mono);">{{ $location->state }}</p>
+                            <div class="border-b-2 border-charcoal-700 pb-3">
+                                <p class="text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Bundesland</p>
+                                <p class="text-lg font-bold text-white" style="font-family: var(--font-mono);">{{ $location->state }}</p>
                             </div>
                             @endif
                             <div>
-                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Letzte Aktualisierung</p>
-                                <p class="text-sm font-bold text-charcoal-900" style="font-family: var(--font-mono);">{{ $location->updated_at->format('d.m.Y H:i') }}</p>
+                                <p class="text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Letzte Aktualisierung</p>
+                                <p class="text-sm font-bold text-white" style="font-family: var(--font-mono);">{{ $location->updated_at->format('d.m.Y H:i') }}</p>
                             </div>
                         </div>
                     </div>
@@ -331,10 +331,11 @@
         // Initialize map
         const map = L.map('map').setView([{{ $location->latitude }}, {{ $location->longitude }}], 15);
 
-        // Add OpenStreetMap tile layer
+        // Add OpenStreetMap tile layer (Grayscale for industrial look)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" style="color: #FFD60A;">OpenStreetMap</a>',
+            maxZoom: 19,
+            className: 'map-tiles'
         }).addTo(map);
 
         // Custom Yellow Marker Icon
