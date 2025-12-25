@@ -220,16 +220,12 @@
                     @endif
 
                     {{-- Technical Info --}}
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-2 gap-4">
                         <div class="bg-charcoal-800 border-2 border-yellow-500 p-4" style="clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);">
                             <p class="text-yellow-500 text-xs font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Typ</p>
                             <p class="text-white font-bold" style="font-family: var(--font-mono);">
                                 {{ $location->type === 'workshop' ? 'Werkstatt' : ($location->type === 'tuv' ? 'TÜV' : 'Reifenhändler') }}
                             </p>
-                        </div>
-                        <div class="bg-charcoal-800 border-2 border-yellow-500 p-4" style="clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);">
-                            <p class="text-yellow-500 text-xs font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">OSM ID</p>
-                            <p class="text-white font-bold" style="font-family: var(--font-mono);">{{ $location->osm_id }}</p>
                         </div>
                         <div class="bg-charcoal-800 border-2 border-yellow-500 p-4" style="clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);">
                             <p class="text-yellow-500 text-xs font-bold uppercase tracking-wider mb-1" style="font-family: var(--font-display);">Aktualisiert</p>
