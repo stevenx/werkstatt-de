@@ -59,6 +59,39 @@
     <div class="absolute bottom-0 left-0 w-full h-16 bg-offwhite transform origin-top-left -skew-y-2"></div>
 </section>
 
+{{-- BREADCRUMBS --}}
+<section class="bg-offwhite pt-8 pb-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}" class="text-gray-600 hover:text-yellow-500 font-semibold transition-colors" style="font-family: var(--font-display);">
+                Home
+            </a>
+            <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="square" stroke-linejoin="miter" d="M9 5l7 7-7 7" />
+            </svg>
+            <a href="{{ route('locations.index', ['type' => $location->type]) }}" class="text-gray-600 hover:text-yellow-500 font-semibold transition-colors" style="font-family: var(--font-display);">
+                @if($location->type === 'workshop')
+                    Werkstätten
+                @elseif($location->type === 'tuv')
+                    TÜV-Stationen
+                @else
+                    Reifenhändler
+                @endif
+            </a>
+            <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="square" stroke-linejoin="miter" d="M9 5l7 7-7 7" />
+            </svg>
+            <a href="{{ route('locations.index', ['city' => $location->city]) }}" class="text-gray-600 hover:text-yellow-500 font-semibold transition-colors" style="font-family: var(--font-display);">
+                {{ $location->city }}
+            </a>
+            <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="square" stroke-linejoin="miter" d="M9 5l7 7-7 7" />
+            </svg>
+            <span class="text-charcoal-900 font-bold" style="font-family: var(--font-display);">{{ Str::limit($location->name, 40) }}</span>
+        </nav>
+    </div>
+</section>
+
 {{-- MAIN CONTENT - Asymmetric 70/30 Layout --}}
 <section class="py-16 bg-offwhite">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
