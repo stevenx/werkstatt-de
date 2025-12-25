@@ -77,9 +77,11 @@
                 {{-- Industrial SVG Illustration - Wrench/Tools --}}
                 <div class="relative">
                     <svg class="w-full h-auto text-yellow-500 opacity-20" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M200 50L350 200L200 350L50 200L200 50Z" stroke="currentColor" stroke-width="4" fill="none"/>
-                        <circle cx="200" cy="200" r="80" stroke="currentColor" stroke-width="4" fill="none"/>
-                        <path d="M200 120L200 280M120 200L280 200" stroke="currentColor" stroke-width="4"/>
+                        {{-- Large Industrial Wrench --}}
+                        <path d="M245 100a16.67 16.67 0 0 0 0 23.33l26.67 26.67a16.67 16.67 0 0 0 23.33 0l62.83-62.83a100 100 0 0 1-132.33 132.33l-115.17 115.17a35.33 35.33 0 0 1-50-50L175.5 169.5a100 100 0 0 1 132.33-132.33L245 100z" stroke="currentColor" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+                        {{-- Bolt detail --}}
+                        <circle cx="120" cy="280" r="25" stroke="currentColor" stroke-width="6" fill="none"/>
+                        <circle cx="120" cy="280" r="12" stroke="currentColor" stroke-width="4"/>
                     </svg>
                 </div>
             </div>
