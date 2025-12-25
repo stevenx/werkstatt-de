@@ -1,2 +1,12 @@
+# Robots.txt for Werkstatt.de
+# Allow all search engines to index all content
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and API endpoints
+Disallow: /admin
+Disallow: /api
+
+# Sitemap location
+Sitemap: https://werkstatt.de/sitemap.xml
