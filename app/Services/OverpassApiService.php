@@ -10,10 +10,12 @@ class OverpassApiService
 {
     protected Client $client;
     protected string $overpassUrl;
+    protected string $nominatimUrl;
 
     public function __construct()
     {
         $this->overpassUrl = config('services.osm.overpass_url', 'https://overpass-api.de/api/interpreter');
+        $this->nominatimUrl = config('services.osm.nominatim_url', 'https://nominatim.openstreetmap.org');
         $this->client = new Client([
             'timeout' => 300,
             'headers' => [
@@ -143,6 +145,55 @@ OVERPASS;
     }
 
     /**
+     * Reverse geocode coordinates to get address using Nominatim
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @return array|null
+     */
+    protected function reverseGeocode(float $latitude, float $longitude): ?array
+    {
+        try {
+            // Respect Nominatim rate limiting (1 request per second)
+            sleep(1);
+
+            $response = $this->client->get($this->nominatimUrl . '/reverse', [
+                'query' => [
+                    'lat' => $latitude,
+                    'lon' => $longitude,
+                    'format' => 'json',
+                    'addressdetails' => 1,
+                    'zoom' => 18, // Building level detail
+                ],
+            ]);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            if (!isset($data['address'])) {
+                return null;
+            }
+
+            $address = $data['address'];
+
+            return [
+                'street' => $address['road'] ?? null,
+                'house_number' => $address['house_number'] ?? null,
+                'postal_code' => $address['postcode'] ?? null,
+                'city' => $address['city'] ?? $address['town'] ?? $address['village'] ?? null,
+                'state' => $address['state'] ?? null,
+            ];
+
+        } catch (GuzzleException $e) {
+            Log::warning('Nominatim reverse geocoding failed', [
+                'lat' => $latitude,
+                'lon' => $longitude,
+                'error' => $e->getMessage(),
+            ]);
+            return null;
+        }
+    }
+
+    /**
      * Parse an OSM element into an array suitable for database storage
      *
      * @param array $element
@@ -169,6 +220,30 @@ OVERPASS;
         } elseif (isset($element['center'])) {
             $latitude = $element['center']['lat'] ?? null;
             $longitude = $element['center']['lon'] ?? null;
+        }
+
+        // Reverse geocode if address is incomplete and we have coordinates
+        if ($latitude && $longitude && (!$street || !$postalCode || !$city)) {
+            Log::info('Address incomplete, trying reverse geocoding', [
+                'osm_id' => $element['type'] . '/' . $element['id'],
+                'lat' => $latitude,
+                'lon' => $longitude,
+            ]);
+
+            $geocodedAddress = $this->reverseGeocode($latitude, $longitude);
+
+            if ($geocodedAddress) {
+                $street = $street ?? $geocodedAddress['street'];
+                $houseNumber = $houseNumber ?? $geocodedAddress['house_number'];
+                $postalCode = $postalCode ?? $geocodedAddress['postal_code'];
+                $city = $city ?? $geocodedAddress['city'];
+                $state = $state ?? $geocodedAddress['state'];
+
+                Log::info('Reverse geocoding successful', [
+                    'osm_id' => $element['type'] . '/' . $element['id'],
+                    'geocoded' => $geocodedAddress,
+                ]);
+            }
         }
 
         // Extract name (try multiple fields)
