@@ -86,13 +86,20 @@ OVERPASS;
     public function queryTireDealers(): array
     {
         // Using bbox for Germany for better reliability
+        // Includes multiple tag variations for German tire shops
         $query = <<<'OVERPASS'
 [out:json][timeout:300];
 (
   node["shop"="tyres"](47.3,5.9,55.1,15.0);
   way["shop"="tyres"](47.3,5.9,55.1,15.0);
+  node["shop"="tires"](47.3,5.9,55.1,15.0);
+  way["shop"="tires"](47.3,5.9,55.1,15.0);
   node["shop"="car_parts"]["service:tyres"="yes"](47.3,5.9,55.1,15.0);
   way["shop"="car_parts"]["service:tyres"="yes"](47.3,5.9,55.1,15.0);
+  node["shop"="car_repair"]["service:tyres"="yes"](47.3,5.9,55.1,15.0);
+  way["shop"="car_repair"]["service:tyres"="yes"](47.3,5.9,55.1,15.0);
+  node["name"~"Reifen",i]["shop"](47.3,5.9,55.1,15.0);
+  way["name"~"Reifen",i]["shop"](47.3,5.9,55.1,15.0);
 );
 out body;
 >;

@@ -208,13 +208,17 @@
                     @if($location->opening_hours)
                     <div class="mb-8">
                         <h3 class="text-lg font-bold text-yellow-500 mb-4 uppercase tracking-wider" style="font-family: var(--font-display);">Öffnungszeiten</h3>
-                        <div class="space-y-3">
-                            @foreach($location->opening_hours as $day => $hours)
-                            <div class="flex justify-between items-center p-3 bg-charcoal-800 border-l-4 border-yellow-500">
-                                <span class="font-bold text-white" style="font-family: var(--font-display);">{{ ucfirst($day) }}</span>
-                                <span class="text-gray-300 font-semibold" style="font-family: var(--font-mono);">{{ $hours }}</span>
-                            </div>
-                            @endforeach
+                        <div class="p-4 bg-charcoal-800 border-l-4 border-yellow-500">
+                            @if(isset($location->opening_hours['raw']))
+                                <span class="text-white font-semibold" style="font-family: var(--font-mono);">{{ $location->opening_hours['raw'] }}</span>
+                            @else
+                                @foreach($location->opening_hours as $day => $hours)
+                                <div class="flex justify-between items-center mb-2 last:mb-0">
+                                    <span class="font-bold text-white" style="font-family: var(--font-display);">{{ ucfirst($day) }}</span>
+                                    <span class="text-gray-300 font-semibold" style="font-family: var(--font-mono);">{{ $hours }}</span>
+                                </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     @endif
