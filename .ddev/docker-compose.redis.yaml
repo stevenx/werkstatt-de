@@ -1,0 +1,17 @@
+services:
+  redis:
+    container_name: ddev-${DDEV_SITENAME}-redis
+    image: redis:7-alpine
+    restart: unless-stopped
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    networks:
+      - ddev_default
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
